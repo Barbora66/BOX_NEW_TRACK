@@ -1,0 +1,29 @@
+
+<div  class="card mb-2" id="<%= dom_id box %>">
+  <%= link_to box_path(box) do %>
+    <div class="card-content is-flex is-justify-content-space-between">
+      <div>
+        <span class="icon">
+          <i class="fa-solid fa-box-open" aria-hidden="true"></i>
+        </span>
+
+        <%= box.bid %>
+      </div>
+
+      <div>
+        <% box.tags.each do |tag| %>
+          <span class="tag <%= tag.color %> ml-1">
+            <%= tag.title %>
+            <i class="<%= tag.icon %> ml-1"></i>
+          </span>
+        <% end %>
+      </div>
+    </div>
+    
+  <% end %>
+</div>
+     
+  
+
+
+

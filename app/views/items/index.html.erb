@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+
+<h1 class="is-size-1">Items</h1>
+
+<div id="items">
+  <% @items.each do |item| %>
+    <%= render "items/item", item: item %>
+  <% end %>
+</div>
+
+

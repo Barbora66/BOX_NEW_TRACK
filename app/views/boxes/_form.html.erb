@@ -1,0 +1,49 @@
+<%= form_with(model: box) do |form| %>
+  <% if box.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(box.errors.count, "error") %> prohibited this box from being saved:</h2>
+
+      <ul>
+        <% box.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :bid, style: "display: block", class: "label" %>
+    <div class="control">
+      <%= form.text_field :bid, class: "input", placeholder: "Box name" %>
+    </div>
+  </div>
+
+  <div class="select is-multiple  mb-4">
+    <% accessible_tags = Tag.all.map { |t| [t.title, t.id] } %>
+    <%= form.select :tag_list, accessible_tags,
+      { multiple: true, include_blank: true },
+      {"data-controller": "tom" }
+    %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content, class: "label" %>
+    <div class="control">
+       <%= form.rich_text_area :content %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :description, style: "display: block", class: "label" %>
+    <div class="control">
+      <%= form.text_area :description, class: "textarea", placeholder: "Items" %>
+    </div>
+  </div>
+
+  <div>
+    <%= form.button "Create Item", class: "button is-primary"%>
+  </div>
+<% end %>
+
+
+

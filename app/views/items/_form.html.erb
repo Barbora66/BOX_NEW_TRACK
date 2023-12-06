@@ -1,0 +1,70 @@
+<%= form_with(model: item, url: url, class: "box") do |form| %>
+<%= form.hidden_field :box_id %>
+  <% if item.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+        <% item.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <%= link_to "back to box", box_path(item.box) %>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title, class: "label is-hidden" %>
+    <%= form.text_field :title, class: "input", placeholder: "topanky" %>
+  </div>
+  
+  
+  <div class="is-flex">
+    <div class="file has-name is-boxed" id="file-js-example">
+      <label class="file-label">
+        <%= form.file_field :image, class:"file-input"  %>
+        <span class="file-cta">
+          <span class="file-icon">
+            <i class="fas fa-upload"></i>
+          </span>
+          <span class="file-label">
+            Choose new image
+          </span>
+        </span>
+        <span class="file-name">
+          No file selected
+        </span>
+      </label>
+    </div>
+
+      <% if item.image.attached? %>
+        <div class="ml-2">
+        <strong>Current image</strong>
+          <figure class="image is-128x128">
+              <%= image_tag item.image.variant(resize_to_limit: [200, 200])  %>
+          </figure>
+        </div>     
+      <% end %>
+  </div>
+
+
+
+
+
+<script>
+  const fileInput = document.querySelector('#file-js-example input[type=file]');
+  fileInput.onchange = () => {
+    if (fileInput.files.length > 0) {
+      const fileName = document.querySelector('#file-js-example .file-name');
+      fileName.textContent = fileInput.files[0].name;
+    }
+  }
+</script>
+
+
+  <div>
+    <%= form.button "OK", class: "button is-primary"%>
+    
+  </div>
+<% end %>

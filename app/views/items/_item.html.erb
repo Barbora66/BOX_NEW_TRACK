@@ -1,0 +1,28 @@
+<div id="<%= dom_id item %>" class="box is-flex is-justify-content" >
+  <figure class="image is-96x96 mr-2">
+    <% if item.image.attached? %>
+      <%= image_tag item.image.variant(resize_to_limit: [100, 100])  %>
+    <% else %>
+        <%# <img src="https://placehold.co/200x200"> %>
+        <%= image_tag "download.png" %>
+    <% end %>
+  </figure>
+
+  <div class="is-flex is-justify-content-space-between is-flex-grow-2">
+    <div>
+      <div><%= item.title %></div>
+        <% if controller_name == "items" %>
+          <strong>
+            <%= link_to item.box.bid, box_path(item.box) %>
+          </strong> 
+        <% end %>
+    </div>
+
+    <div>
+      <%= link_to "Edit", edit_item_path(item), class:"button is-primary" %>
+    </div>
+  </div>
+
+</div>
+
+

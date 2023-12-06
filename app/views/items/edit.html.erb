@@ -1,0 +1,10 @@
+<h1>Editing item</h1>
+
+<%= render "form", item: @item, url: item_path(@item) %>
+
+
+<div>
+  <%= link_to "Show this item", @item, class: "button is-light" %> 
+  <%= link_to "Back to items", items_path, class: "button is-light" %>
+  <%= button_to "Delete", @item, method: :delete, data: { turbo_confirm: "Si si isty?"}, class: "button mt-2 is-danger " %>
+</div>

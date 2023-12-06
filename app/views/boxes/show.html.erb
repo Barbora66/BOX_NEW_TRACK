@@ -1,0 +1,24 @@
+<p style="color: green"><%= notice %></p>
+
+<h1 class="is-size-1"><%= @box.bid %></h1>
+
+<div class="content">
+  <%= @box.content %>
+</div>
+
+<div class="box">
+  <%= simple_format @box.description %>
+</div>
+
+<% @box.items.each do |i| %>
+  <%= render "items/item", item: i %>
+<% end %>
+
+ <%= render "items/form", item: Item.new(box: @box), url: box_items_path(@box) %>
+
+<div>
+  <%= link_to "Edit this box", edit_box_path(@box), class: "button is-light"  %> 
+  <%= link_to "Back to boxes", boxes_path, class: "button is-light" %>
+
+  <%= button_to "Delete", @box, method: :delete, data: { turbo_confirm: "Si si isty?"}, class: "button is-danger mt-3" %>
+</div>

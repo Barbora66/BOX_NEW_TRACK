@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+
+<h1 class="is-size-1">Boxes</h1>
+
+<div id="boxes" >
+  <% @boxes.each do |box| %>
+    <%= render "boxes/box", box: box %>
+  <% end %>
+</div>
+
+<%= link_to "New box", new_box_path, class:"button is-primary mt-4" %>
